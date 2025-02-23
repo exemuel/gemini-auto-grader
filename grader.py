@@ -18,22 +18,22 @@ def grade_answer(answer, rubric, question):
     llm = ChatGoogleGenerativeAI(model="gemini-2.0-pro-exp-02-05", temperature=0.2, api_key=api_key)
 
     prompt = ChatPromptTemplate.from_messages([
-        ("system", "You are an AI assistant that grades student answers based on a rubric and provides feedback."),
+        ("system", "Anda adalah asisten AI yang menilai jawaban siswa berdasarkan rubrik dan memberikan umpan balik."),
         ("user", f"""
-        ## Question:
+        ## Pertanyaan:
         {question}
 
-        ## Answer:
+        ## Jawaban:
         {answer}
 
-        ## Rubric:
+        ## Rubrik:
         {format_rubric(rubric)}
 
-        ## Grading and Feedback:
-        Based on the provided rubric, assign a grade to the answer and provide detailed feedback. Justify your grade choice by referencing specific parts of the answer and how they align (or don't align) with the rubric criteria. Be constructive and offer suggestions for improvement. Format the response as follows:
+        ## Penilaian dan Umpan Balik:
+        Berdasarkan rubrik yang diberikan, tetapkan nilai untuk jawaban dan berikan umpan balik yang terperinci. Jelaskan pilihan nilai Anda dengan merujuk pada bagian-bagian tertentu dari jawaban dan bagaimana bagian-bagian tersebut sesuai (atau tidak sesuai) dengan kriteria rubrik. Bersikaplah konstruktif dan tawarkan saran untuk perbaikan. Format tanggapan sebagai berikut:
 
-        **Grade:** [Grade Level] (e.g., Excellent, Good, Fair, Poor, Very Poor)
-        **Feedback:** [Detailed feedback explaining the grade and suggestions for improvement]
+        **Nilai:** [Tingkatan Nilai] (e.g., Excellent (100), Good (80), Fair (60), Poor (40), Very Poor (20))
+        **Umpan Balik:** [Umpan balik terperinci yang menjelaskan nilai dan saran untuk perbaikan]
         """)
     ])
 
@@ -64,11 +64,11 @@ def extract_grade(text):
     try:
         lines = text.splitlines()
         for line in lines:
-            if line.startswith("**Grade:**"):
-                return line.split("**Grade:**")[1].strip()
-        return "Grade Not Found"
+            if line.startswith("**Nilai:**"):
+                return line.split("**Nilai:**")[1].strip()
+        return "Nilai Tidak Ditemukan"
     except:
-        return "Grade Not Found"
+        return "Nilai Tidak Ditemukan"
 
 
 def extract_feedback(text):
@@ -78,36 +78,11 @@ def extract_feedback(text):
         feedback_started = False
         feedback_lines = []
         for line in lines:
-            if line.startswith("**Feedback:**"):
+            if line.startswith("**Umpan Balik:**"):
                 feedback_started = True
                 continue  # don't include the "**Feedback:**" line itself
             if feedback_started:
                 feedback_lines.append(line)
         return "\n".join(feedback_lines).strip()
     except:
-        return "Feedback Not Found"
-
-# defining main function
-def main():
-    rubric = {
-        "Excellent": "Demonstrates a deep understanding of the topic and provides insightful analysis.",
-        "Good": "Shows a good understanding of the topic and provides relevant analysis.",
-        "Fair": "Demonstrates a basic understanding but lacks depth in analysis.",
-        "Poor": "Shows a limited understanding and provides superficial analysis.",
-        "Very Poor": "Demonstrates a lack of understanding of the topic."
-    }
-    question = "Explain the concept of Artificial Intelligence."
-    answer = "AI is like, computers that can think. They can do stuff like play games and recognize faces. It's pretty cool."
-
-    grade, feedback, response = grade_answer(answer, rubric, question)
-
-    print(f"Grade: {grade}")
-    print(f"Feedback: {feedback}")
-
-    # print("\nRaw Gemini Response (for debugging):")  # Uncomment for debugging
-    # print(response)
-
-# Using the special variable 
-# __name__
-if __name__=="__main__":
-    main()
+        return "Umpan Balik Tidak Ditemukan"
