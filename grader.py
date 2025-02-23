@@ -15,7 +15,7 @@ if not api_key:
 def grade_answer(answer, rubric, question):
     """Grades an answer using LangChain's ChatGoogleGenerativeAI and ChatPromptTemplate."""
 
-    llm = ChatGoogleGenerativeAI(model="gemini-2.0-pro-exp-02-05", temperature=0.2, api_key=api_key)
+    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-lite-preview-02-05", temperature=0.2, api_key=api_key)
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", "Anda adalah asisten AI yang menilai jawaban siswa berdasarkan rubrik dan memberikan umpan balik."),
