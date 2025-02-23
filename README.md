@@ -14,7 +14,7 @@ This Python tool uses the Gemini API to automatically grade student answers base
 
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/gemini-auto-grader.git](https://www.google.com/search?q=https://github.com/YOUR_USERNAME/gemini-auto-grader.git)  # Replace with your username
+    git clone https://github.com/exemuel/gemini-auto-grader.git
     ```
 
 2.  Navigate to the directory:
@@ -22,9 +22,9 @@ This Python tool uses the Gemini API to automatically grade student answers base
     cd gemini-auto-grader
     ```
 
-3.  Install the required libraries:
+3.  Create Conda Environment and install the required libraries:
     ```bash
-    pip install langchain_google_genai
+    conda create -n <environment-name> --file requirements.txt
     ```
 
 4.  Set your Gemini API key as an environment variable named `GOOGLE_API_KEY`.  The recommended way to do this is to use a `.env` file in the same directory as your script:
@@ -32,23 +32,12 @@ This Python tool uses the Gemini API to automatically grade student answers base
     ```
     GOOGLE_API_KEY=YOUR_ACTUAL_API_KEY
     ```
-    Then, install the `python-dotenv` package:
-    ```bash
-    pip install python-dotenv
-    ```
-    And import it in your Python file:
-    ```python
-    import os
-    from dotenv import load_dotenv
-    load_dotenv() # Load environment variables from .env file
-    api_key = os.getenv("GOOGLE_API_KEY")
-    ```
 
 ## Usage
-Check `main.py`
+Check `main.py` for example usage.
 
 ```python
-from gemini_grader import grade_answer, format_rubric, extract_grade, extract_feedback # Import from your script
+from gemini_grader import *
 
 # Define your rubric
 rubric = {
