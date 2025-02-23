@@ -73,7 +73,7 @@ print(f"Umpan Balik: {feedback}")
 # (Optional) Print the raw Gemini response for debugging
 # print("\nRaw Gemini Response (for debugging):")
 # print(response.result)
-
+```
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
