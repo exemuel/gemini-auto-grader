@@ -14,8 +14,8 @@ def main():
     print(f"Nilai: {grade}")
     print(f"Umpan Balik: {feedback}")
 
-    print("\nRaw Gemini Response (for debugging):")  # Uncomment for debugging
-    print(response)
+    # print("\nRaw Gemini Response (for debugging):")  # Uncomment for debugging
+    # print(response)
 
 # Using the special variable 
 # __name__
