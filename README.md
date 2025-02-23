@@ -34,19 +34,24 @@ This Python tool uses the Gemini API to automatically grade student answers base
     ```
 
 ## Usage
-Check `main.py` for example usage.
+1. Create a rubric file: `rubric.yaml`.
 
+```yaml
+Excellent (100): Menunjukkan pemahaman mendalam tentang topik dan memberikan analisis yang mendalam serta wawasan yang berharga.
+Good (80): Menunjukkan pemahaman yang baik tentang topik dan memberikan analisis yang relevan.
+Fair (60): Menunjukkan pemahaman dasar, tetapi analisisnya kurang mendalam.
+Poor (40): Menunjukkan pemahaman yang terbatas dan memberikan analisis yang dangkal.
+Very Poor (20): Menunjukkan kurangnya pemahaman tentang topik.
+```
+
+2. Check `main.py` for example usage.
 ```python
+import yaml
 from gemini_grader import *
 
-# Define your rubric
-rubric = {
-    "Excellent (100)": "Menunjukkan pemahaman mendalam tentang topik dan memberikan analisis yang mendalam serta wawasan yang berharga.",
-    "Good (80)": "Menunjukkan pemahaman yang baik tentang topik dan memberikan analisis yang relevan.",
-    "Fair (60)": "Menunjukkan pemahaman dasar, tetapi analisisnya kurang mendalam.",
-    "Poor (40)": "Menunjukkan pemahaman yang terbatas dan memberikan analisis yang dangkal.",
-    "Very Poor (20)": "Menunjukkan kurangnya pemahaman tentang topik."
-}
+# read rubric.yaml
+with open("rubric.yaml", "r") as stream:
+    rubric = yaml.safe_load(stream)
 
 # Example question and answer
 question = "Apakah Bezold Effect lebih berpengaruh pada jenis grafik tertentu, seperti diagram batang, scatter plot, atau peta choropleth? Mengapa?"
