@@ -24,7 +24,7 @@ This Python tool uses the Gemini API to automatically grade student answers base
 
 3.  Install the required libraries:
     ```bash
-    pip install google-generativeai
+    pip install langchain_google_genai
     ```
 
 4.  Set your Gemini API key as an environment variable named `GOOGLE_API_KEY`.  The recommended way to do this is to use a `.env` file in the same directory as your script:
@@ -72,3 +72,13 @@ print(f"Feedback: {feedback}")
 # (Optional) Print the raw Gemini response for debugging
 # print("\nRaw Gemini Response (for debugging):")
 # print(response.result)
+
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
+MIT License
+
+## Contact
+Samuel Situmeang (samsitumeang@gmail.com)
