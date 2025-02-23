@@ -22,12 +22,18 @@ This Python tool uses the Gemini API to automatically grade student answers base
     cd gemini-auto-grader
     ```
 
-3.  Create Conda Environment and install the required libraries:
+3.  Create Conda Environment:
     ```bash
-    conda create -n <environment-name> --file requirements.txt
+    conda create -n <environment-name>
     ```
 
-4.  Set your Gemini API key as an environment variable named `GOOGLE_API_KEY`.  The recommended way to do this is to use a `.env` file in the same directory as your script:
+4.  Activate the environment and install the required libraries:
+    ```bash
+    conda activate <environment-name>
+    pip install -r requirements.txt
+    ```
+
+Set your Gemini API key as an environment variable named `GOOGLE_API_KEY`.  The recommended way to do this is to use a `.env` file in the same directory as your script:
 
     ```
     GOOGLE_API_KEY=YOUR_ACTUAL_API_KEY
