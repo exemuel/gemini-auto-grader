@@ -45,29 +45,30 @@ This Python tool uses the Gemini API to automatically grade student answers base
     ```
 
 ## Usage
+Check `main.py`
 
 ```python
 from gemini_grader import grade_answer, format_rubric, extract_grade, extract_feedback # Import from your script
 
 # Define your rubric
 rubric = {
-    "Excellent": "Demonstrates a deep understanding of the topic and provides insightful analysis.",
-    "Good": "Shows a good understanding of the topic and provides relevant analysis.",
-    "Fair": "Demonstrates a basic understanding but lacks depth in analysis.",
-    "Poor": "Shows a limited understanding and provides superficial analysis.",
-    "Very Poor": "Demonstrates a lack of understanding of the topic."
+    "Excellent (100)": "Menunjukkan pemahaman mendalam tentang topik dan memberikan analisis yang mendalam serta wawasan yang berharga.",
+    "Good (80)": "Menunjukkan pemahaman yang baik tentang topik dan memberikan analisis yang relevan.",
+    "Fair (60)": "Menunjukkan pemahaman dasar, tetapi analisisnya kurang mendalam.",
+    "Poor (40)": "Menunjukkan pemahaman yang terbatas dan memberikan analisis yang dangkal.",
+    "Very Poor (20)": "Menunjukkan kurangnya pemahaman tentang topik."
 }
 
 # Example question and answer
-question = "Explain the concept of Artificial Intelligence."
-answer = "AI is like, computers that can think.  They can do stuff like play games and recognize faces.  It's pretty cool."
+question = "Apakah Bezold Effect lebih berpengaruh pada jenis grafik tertentu, seperti diagram batang, scatter plot, atau peta choropleth? Mengapa?"
+answer = "Ya, Bezold Effect lebih berpengaruh pada peta choropleth dibandingkan diagram batang atau scatter plot. Soalnya, peta choropleth sangat bergantung pada gradasi warna untuk menunjukkan perbedaan data antar wilayah. Kalau ada perubahan warna karena efek Bezold, bisa bikin perbedaan antar daerah terlihat lebih jelas atau malah jadi samar. Sementara itu, di diagram batang dan scatter plot, warna biasanya dipakai untuk kategori yang terpisah, jadi efek ini nggak terlalu mengganggu interpretasi datanya."
 
 # Grade the answer and get feedback
 grade, feedback, response = grade_answer(answer, rubric, question)
 
 # Print the results
-print(f"Grade: {grade}")
-print(f"Feedback: {feedback}")
+print(f"Nilai: {grade}")
+print(f"Umpan Balik: {feedback}")
 
 # (Optional) Print the raw Gemini response for debugging
 # print("\nRaw Gemini Response (for debugging):")
